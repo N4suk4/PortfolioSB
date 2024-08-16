@@ -1,13 +1,51 @@
-body{
-    box-sizing: border-box;
-    margin: 0;
-    scroll-behavior: smooth;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --HexagonLargeur: 100px; 
+  --HexagonHauteur: 57.74px; 
+  --HexagonColor: #cdd1f8;
 }
 
-*{
-    font-family: sans-serif;
-    box-sizing: border-box;
+body{
+  box-sizing: border-box;
+}
+
+.hexagon-container {
+position: relative;
+width: 300vw;
+height: 300vh;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.hexagon {
+position: relative;
+width: var(--HexagonLargeur);
+height: var(--HexagonHauteur);
+background-color: var(--HexagonColor);
+margin: 5px;
+display: inline-block;
+box-sizing: border-box;
+
+&::before,
+&::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: calc(var(--HexagonLargeur) / 2) solid transparent;
+  border-right: calc(var(--HexagonLargeur) / 2) solid transparent;
+}
+
+&::before {
+  bottom: 100%;
+  border-bottom: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
+}
+
+&::after {
+  top: 100%;
+  border-top: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
+}
 }
