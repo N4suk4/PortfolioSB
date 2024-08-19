@@ -1,6 +1,5 @@
-const container = document.querySelector('.hexagon-container');
+const container = document.querySelector('.hexagonContainer');
 
-// Fonction pour créer un hexagone
 function createHexagon(x, y) {
   const hexagon = document.createElement('div');
   hexagon.className = 'hexagon';
@@ -10,16 +9,21 @@ function createHexagon(x, y) {
   container.appendChild(hexagon);
 }
 
-// Fonction pour générer plusieurs hexagones
 function generateHexagons() {
   const hexWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonLargeur'));
   const hexHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonHauteur'));
+  
+  const spacing = 0; // Espacement de 1 pixel
+  const hexWidthWithSpacing = hexWidth + spacing;
+  const hexHeightWithSpacing = hexHeight + spacing;
+  
   const containerWidth = container.clientWidth;
   const containerHeight = container.clientHeight;
 
-  for (let x = 0; x < containerWidth; x += hexWidth * 0.75) {
-    for (let y = 0; y < containerHeight; y += hexHeight) {
-      createHexagon(x, y);
+  for (let y = 0; y < containerHeight; y += hexHeightWithSpacing) {
+    for (let x = 0; x < containerWidth; x += hexWidthWithSpacing * Math.sqrt(3)) {
+      const offsetX = (y / hexHeightWithSpacing) % 2 === 0 ? 0 : hexWidthWithSpacing * Math.sqrt(3) / 2;
+      createHexagon(x + offsetX, y);
     }
   }
 }

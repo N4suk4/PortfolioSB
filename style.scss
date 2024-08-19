@@ -1,51 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --HexagonLargeur: 100px; 
-  --HexagonHauteur: 57.74px; 
-  --HexagonColor: #cdd1f8;
+  --HexagonLargeur: 65px;
+  --HexagonHauteur: 36px;
+  --HexagonColor: #211e35;
+  --ShadowColor: rgba(0, 0, 0, 0.3);
+
 }
 
 body{
   box-sizing: border-box;
+  background-color: #000000;
 }
 
-.hexagon-container {
-position: relative;
-width: 300vw;
-height: 300vh;
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: center;
-overflow: hidden;
+.hexagonContainer {
+  position: fixed;
+  left: -100px;
+  width: 200vw;
+  height: 200vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .hexagon {
-position: relative;
-width: var(--HexagonLargeur);
-height: var(--HexagonHauteur);
-background-color: var(--HexagonColor);
-margin: 5px;
-display: inline-block;
-box-sizing: border-box;
+  position: relative;
+  width: var(--HexagonLargeur);
+  height: var(--HexagonHauteur);
+  background-color: var(--HexagonColor);
+  display: inline-block;
+  box-sizing: border-box;
+  rotate: 30deg;
+  transition: transform 0.2s ease;
+  will-change: background-color, transform;
 
-&::before,
-&::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  border-left: calc(var(--HexagonLargeur) / 2) solid transparent;
-  border-right: calc(var(--HexagonLargeur) / 2) solid transparent;
-}
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: calc(var(--HexagonLargeur) / 2) solid transparent;
+    border-right: calc(var(--HexagonLargeur) / 2) solid transparent;
+    
+  }
 
-&::before {
-  bottom: 100%;
-  border-bottom: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
-}
+  &::before {
+    bottom: 100%;
+    border-bottom: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
+  }
 
-&::after {
-  top: 100%;
-  border-top: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
-}
+  &::after {
+    top: 100%;
+    border-top: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
+  }
+
 }
