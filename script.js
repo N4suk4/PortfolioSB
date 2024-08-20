@@ -38,26 +38,46 @@ generateHexagons();
 
 const hexagons = document.querySelectorAll('.hexagon');
 
+const influenceCurseur = 100; 
+const effectStrengthFactor = 5;
 
-hexagons.forEach(hex => {
-  const perspectiveElement = hex.parentElement;
+// Fonction pour calculer la distance entre deux points
+function getDistance(x1, y1, x2, y2) {
+  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
 
-  perspectiveElement.addEventListener('mousemove', e => {
-    const hexRect = perspectiveElement.getBoundingClientRect();
+// Fonction pour appliquer l'effet aux hexagones
+function applyEffect(e) {
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
 
-    const x = e.clientX - hexRect.left;
-    const y = e.clientY - hexRect.top;
+  hexagons.forEach(hex => {
+    const hexRect = hex.getBoundingClientRect();
+    const hexCenterX = hexRect.left + hexRect.width / 2;
+    const hexCenterY = hexRect.top + hexRect.height / 2;
 
-    const midCardWidth = hexRect.width / 2;
-    const midCardHeight = hexRect.height / 2;
+    // Calculer la distance entre le curseur et le centre de l'hexagone
+    const distance = getDistance(cursorX, cursorY, hexCenterX, hexCenterY);
 
-    const angleY = (x - midCardWidth) ;
-    const angleX = -(y - midCardHeight) ;
+    // Calculer l'effet en fonction de la distance
+    const effectStrength = Math.max(0, (influenceCurseur - distance) / influenceCurseur) * effectStrengthFactor;
 
+    // Calculer les angles de rotation
+    const angleY = (cursorX - hexCenterX) / 4 * effectStrength;
+    const angleX = -(cursorY - hexCenterY) / 4 * effectStrength;
+
+    // Appliquer la transformation
     hex.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(-20px)`;
   });
+}
 
-  perspectiveElement.addEventListener('mouseleave', () => {
-    hex.style.transform = `rotateX(0) rotateY(0)`; // Remet à la position initiale
+// Ajouter l'écouteur d'événements sur le conteneur
+document.querySelector('.hexagonContainer').addEventListener('mousemove', applyEffect);
+
+// Réinitialiser la transformation lorsque le curseur quitte le conteneur
+document.querySelector('.hexagonContainer').addEventListener('mouseleave', () => {
+  hexagons.forEach(hex => {
+    hex.style.transform = `rotateX(0) rotateY(0)`;
   });
 });
+
