@@ -38,19 +38,26 @@ generateHexagons();
 
 const hexagons = document.querySelectorAll('.hexagon');
 
-hexagons.forEach(el => {
-  el.parentElement.addEventListener('mousemove', e => {
-    let elRect = el.parentElement.getBoundingClientRect();
 
-    let x = e.clientX - elRect.left;
-    let y = e.clientY - elRect.top;
+hexagons.forEach(hex => {
+  const perspectiveElement = hex.parentElement;
 
-    let midCardWidth = elRect.width / 2;
-    let midCardHeight = elRect.height / 2;
+  perspectiveElement.addEventListener('mousemove', e => {
+    const hexRect = perspectiveElement.getBoundingClientRect();
 
-    let angleY = (x - midCardWidth) / 8;
-    let angleX = (y - midCardHeight) / 8;
+    const x = e.clientX - hexRect.left;
+    const y = e.clientY - hexRect.top;
 
-    el.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    const midCardWidth = hexRect.width / 2;
+    const midCardHeight = hexRect.height / 2;
+
+    const angleY = (x - midCardWidth) ;
+    const angleX = -(y - midCardHeight) ;
+
+    hex.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(-20px)`;
+  });
+
+  perspectiveElement.addEventListener('mouseleave', () => {
+    hex.style.transform = `rotateX(0) rotateY(0)`; // Remet à la position initiale
   });
 });

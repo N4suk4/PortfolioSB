@@ -3,7 +3,7 @@
 :root {
   --HexagonLargeur: 65px;
   --HexagonHauteur: 36px;
-  --HexagonColor: #211e35;
+  --HexagonColor: #fefefe;
 }
 
 body{
@@ -28,7 +28,8 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 800px;
+  color: #000000;
 
     .hexagon {
       position: relative;
@@ -38,7 +39,8 @@ body{
       display: inline-block;
       box-sizing: border-box;
       rotate: 30deg;
-      transition: transform 0.2s ease;
+      transition: transform 0.1s ease;
+      transform-origin: center center;
       will-change: background-color, transform;
     
       &::before,
