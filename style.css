@@ -56,4 +56,50 @@ body {
 .hexagonContainer .perspective .hexagon::after {
   top: 100%;
   border-top: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
+}
+.hexagonContainer .lightRay {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  filter: blur(15px);
+}
+.hexagonContainer .lightRay1 {
+  transition: transform ease-out;
+}
+.hexagonContainer .lightRay2 {
+  transition: transform 0.02s ease-out, opacity 0.02s ease-out;
+  opacity: 0.8;
+}
+.hexagonContainer .lightRay3 {
+  transition: transform 0.04s ease-out, opacity 0.04s ease-out;
+  opacity: 0.6;
+}
+.hexagonContainer .lightRay4 {
+  transition: transform 0.06s ease-out, opacity 0.06s ease-out;
+  opacity: 0.4;
+}
+.hexagonContainer .lightRay5 {
+  transition: transform 0.08s ease-out, opacity 0.08s ease-out;
+  opacity: 0.2;
+}
+.hexagonContainer .lightRay6 {
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+  opacity: 0.1;
+}
+
+.light-bar {
+  position: absolute;
+  width: 3px;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 1s ease-in-out, transform 2s linear;
 }/*# sourceMappingURL=style.css.map */
