@@ -1,3 +1,23 @@
+
+
+$(document).ready(function(){
+  var mouseX, mouseY;
+  var ww = $(window).width(); 
+  var wh = $(window).height(); 
+  var traX, traY;
+
+  $(document).mousemove(function(e){
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+    traX = (mouseX / ww) * 50;
+    traY = (mouseY / wh) * 50;
+  
+    $(".title").css({
+      "background-position": traX + "%" + " " + traY + "%"
+    });
+  });
+});
+
 const container = document.querySelector('.hexagonContainer');
 
 function createHexagon(x, y) {
@@ -77,97 +97,3 @@ document.querySelector('.hexagonContainer').addEventListener('mouseleave', () =>
   });
 });
 
-const lightRays = document.querySelectorAll('.lightRay');
-const contain = document.querySelector('.hexagonContainer');
-
-function moveLightRays(e) {
-    const rect = contain.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    // Met à jour la position de la première lumière sans délai
-    lightRays[0].style.transform = `translate(${mouseX - 50}px, ${mouseY - 50}px)`;
-
-    // Applique un délai pour les traînées de lumière suivantes
-    lightRays.forEach((lightRay, index) => {
-        setTimeout(() => {
-            lightRay.style.transform = `translate(${mouseX - 50}px, ${mouseY - 50}px)`;
-        }, index * 50); // Ajustez le délai si nécessaire
-    });
-}
-
-// Assure que la première lumière se déplace immédiatement
-contain.addEventListener('mousemove', moveLightRays);
-
-document.querySelectorAll('.movingLight').forEach(light => {
-  function animateLight() {
-      const startX = Math.random() * window.innerWidth;
-      const startY = Math.random() * window.innerHeight;
-      const endX = Math.random() * window.innerWidth;
-      const endY = Math.random() * window.innerHeight;
-
-      const duration = Math.random() * 5000 + 3000; // Durée entre 3 et 8 secondes
-
-      light.style.transform = `translate(${startX}px, ${startY}px)`;
-      light.style.transition = `transform ${duration}ms linear`;
-
-      setTimeout(() => {
-          light.style.transform = `translate(${endX}px, ${endY}px)`;
-      }, 50);
-
-      setTimeout(animateLight, duration);
-  }
-
-  animateLight();
-});
-
-// Modifier l'écouteur d'événements
-document.addEventListener('mousemove', applyEffect);
-
-// Optionnel: si vous avez un effet de réinitialisation lorsque le curseur quitte la zone
-document.addEventListener('mouseleave', () => {
-  hexagons.forEach(hex => {
-    hex.style.transform = `rotateX(0) rotateY(0)`;
-  });
-});
-
-function createLightBar() {
-  const bar = document.createElement('div');
-  bar.className = 'light-bar';
-
-  // Position de départ aléatoire sur l'écran
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
-
-  bar.style.left = `${startX}px`;
-  bar.style.top = `${startY}px`;
-
-  document.querySelector('.hexagonContainer').appendChild(bar);
-
-  // Déplacement de la barre en diagonale
-  requestAnimationFrame(() => {
-      bar.style.opacity = 1;
-
-      // Calcul d'une nouvelle position cible pour le mouvement
-      const endX = startX + (Math.random() * 400 - 200);
-      const endY = startY + (Math.random() * 400 - 200);
-
-      // Applique la transformation pour déplacer la barre
-      bar.style.transform = `rotate(-30deg) translate(${endX - startX}px, ${endY - startY}px)`;
-  });
-
-  // Barre disparaît après 2 secondes
-  setTimeout(() => {
-      bar.style.opacity = 0;
-      setTimeout(() => bar.remove(), 1000);
-  }, 2000);
-}
-
-function generateRandomLightBars() {
-  setInterval(() => {
-      const delay = Math.random() * 1000;
-      setTimeout(createLightBar, delay);
-  }, 500); // Génère une nouvelle barre toutes les 0.5 secondes en moyenne
-}
-
-generateRandomLightBars();

@@ -1,13 +1,61 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --HexagonLargeur: 65px;
   --HexagonHauteur: 36px;
-  --HexagonColor: #0e1547;
+  --HexagonColor: #1d254a;
 }
 
 body {
   box-sizing: border-box;
   background-color: #000000;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+header #projector {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+header .container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 25%;
+}
+header .container .title {
+  font-weight: 900;
+  font-family: "Roboto Condensed";
+  color: transparent;
+  font-size: 120px;
+  background: url("https://media.gettyimages.com/id/1179289433/fr/vid%C3%A9o/4k-r%C3%A9solution-technologie-r%C3%A9sum%C3%A9-fond-fond-num%C3%A9rique-de-boucle-donde-de-donn%C3%A9es-binaires.jpg?s=640x640&k=20&c=eldEZJx4IMeayCIx1fYb6QdpLiVyPVG5eE4DA2gyXRU=") no-repeat center center;
+  background-size: 110%;
+  -webkit-background-clip: text;
+  position: relative;
+  text-align: center;
+  line-height: 90px;
+  letter-spacing: -8px;
+}
+header .container .subtitle {
+  font-family: "Roboto Condensed";
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 10px;
+  color: white;
 }
 
 .hexagonContainer {
@@ -93,13 +141,18 @@ body {
   opacity: 0.1;
 }
 
-.light-bar {
+.movingPoint {
   position: absolute;
-  width: 3px;
-  height: 300px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-  opacity: 0;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-  transition: opacity 1s ease-in-out, transform 2s linear;
+  transition: transform 5s linear; /* Augmenter la durée à 5 secondes pour ralentir */
+}
+
+.movingPoint.trail {
+  opacity: 0.5;
+  transition: transform 50s linear, opacity 5s ease-in-out; /* Traînée plus lente */
 }/*# sourceMappingURL=style.css.map */
