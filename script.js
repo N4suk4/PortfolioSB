@@ -1,22 +1,153 @@
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
+let particlesArray = [];
+let mouse = { x: null, y: null };
 
-$(document).ready(function(){
-  var mouseX, mouseY;
-  var ww = $(window).width(); 
-  var wh = $(window).height(); 
-  var traX, traY;
+class Particle {
+  constructor(x, y, size, color, speedX, speedY, alphaMax) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.alpha = Math.random() * 0.1;
+    this.alphaMax = alphaMax;
+  }
 
-  $(document).mousemove(function(e){
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-    traX = (mouseX / ww) * 50;
-    traY = (mouseY / wh) * 50;
-  
-    $(".title").css({
-      "background-position": traX + "%" + " " + traY + "%"
-    });
+  update() {
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Si la souris est proche, écarter les particules
+    if (distance < 100) {
+      this.speedX += dx / distance * 0.1;
+      this.speedY += dy / distance * 0.1;
+    }
+
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.alpha += 0.005; // L'alpha monte progressivement jusqu'à un maximum
+    if (this.alpha > this.alphaMax) this.alpha = this.alphaMax;
+  }
+
+  draw() {
+    ctx.globalAlpha = this.alpha; // Applique la transparence
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+}
+
+function createParticleBatch(numParticles, color, sizeRange, speedRange, alphaMax) {
+  for (let i = 0; i < numParticles; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const size = Math.random() * (sizeRange[1] - sizeRange[0]) + sizeRange[0];
+    const speedX = (Math.random() - 0.5) * (speedRange[1] - speedRange[0]) + speedRange[0];
+    const speedY = (Math.random() - 0.5) * (speedRange[1] - speedRange[0]) + speedRange[0];
+    const alphaMaxValue = alphaMax;
+
+    particlesArray.push(new Particle(x, y, size, color, speedX, speedY, alphaMaxValue));
+  }
+}
+
+function createParticles() {
+  createParticleBatch(300, "#F0F0F0", [1, 3], [0.1, 0.5], 0.4); // Petites particules
+  createParticleBatch(100, "#C0C0C0", [4, 6], [0.05, 0.2], 0.3); // Moyennes particules
+  createParticleBatch(10, "#A0A0A0", [10, 20], [0.02, 0.1], 0.2); // Grandes particules
+}
+
+function createLineConnection(particle1, particle2, color) {
+  ctx.beginPath();
+  ctx.moveTo(particle1.x, particle1.y);
+  ctx.lineTo(particle2.x, particle2.y);
+  ctx.strokeStyle = color;
+  ctx.stroke();
+}
+
+function drawLines() {
+  const connectionColor = "#FFFFFF"; // Couleur magenta
+  const maxDistance = 100; // Distance maximale pour créer une connexion
+
+  for (let i = 0; i < particlesArray.length; i++) {
+    for (let j = i + 1; j < particlesArray.length; j++) {
+      const dx = particlesArray[i].x - particlesArray[j].x;
+      const dy = particlesArray[i].y - particlesArray[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < maxDistance) {
+        createLineConnection(particlesArray[i], particlesArray[j], connectionColor);
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particlesArray.forEach((particle, index) => {
+    particle.update();
+    particle.draw();
+
+    // Retirer les particules hors de l'écran
+    if (particle.x < 0 || particle.x > canvas.width || particle.y < 0 || particle.y > canvas.height) {
+      particlesArray.splice(index, 1);
+    }
   });
-});
+
+  if (particlesArray.length < 400) { // Limite pour éviter une surcharge de particules
+    createParticles();
+  }
+
+  drawLines(); // Dessiner les lignes de connexion après avoir dessiné les particules
+
+  requestAnimationFrame(animate);
+}
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function handleMouseMove(event) {
+  mouse.x = event.x;
+  mouse.y = event.y;
+}
+
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('mousemove', handleMouseMove);
+
+createParticles();
+animate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const container = document.querySelector('.hexagonContainer');
 

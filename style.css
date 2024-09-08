@@ -23,12 +23,14 @@ header {
   align-items: center;
   text-align: center;
 }
-header #projector {
+header canvas {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
 }
 header .container {
   position: absolute;
@@ -42,7 +44,7 @@ header .container .title {
   color: transparent;
   font-size: 120px;
   background: url("https://media.gettyimages.com/id/1179289433/fr/vid%C3%A9o/4k-r%C3%A9solution-technologie-r%C3%A9sum%C3%A9-fond-fond-num%C3%A9rique-de-boucle-donde-de-donn%C3%A9es-binaires.jpg?s=640x640&k=20&c=eldEZJx4IMeayCIx1fYb6QdpLiVyPVG5eE4DA2gyXRU=") no-repeat center center;
-  background-size: 110%;
+  background-position: 50% 50%;
   -webkit-background-clip: text;
   position: relative;
   text-align: center;
