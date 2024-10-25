@@ -4,6 +4,7 @@
   --HexagonLargeur: 65px;
   --HexagonHauteur: 36px;
   --HexagonColor: #1d254a;
+  --BoxColor: #006BE9;
 }
 
 body {
@@ -12,6 +13,7 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  font-family: "Roboto Condensed";
 }
 
 header {
@@ -91,6 +93,7 @@ header .container .subtitle {
   transition: transform 0.1s ease;
   transform-origin: center center;
   will-change: background-color, transform;
+  z-index: 0;
 }
 .hexagonContainer .perspective .hexagon::before, .hexagonContainer .perspective .hexagon::after {
   content: "";
@@ -107,41 +110,6 @@ header .container .subtitle {
   top: 100%;
   border-top: calc(var(--HexagonHauteur) / 2) solid var(--HexagonColor);
 }
-.hexagonContainer .lightRay {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0;
-  left: 0;
-  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-  filter: blur(15px);
-}
-.hexagonContainer .lightRay1 {
-  transition: transform ease-out;
-}
-.hexagonContainer .lightRay2 {
-  transition: transform 0.02s ease-out, opacity 0.02s ease-out;
-  opacity: 0.8;
-}
-.hexagonContainer .lightRay3 {
-  transition: transform 0.04s ease-out, opacity 0.04s ease-out;
-  opacity: 0.6;
-}
-.hexagonContainer .lightRay4 {
-  transition: transform 0.06s ease-out, opacity 0.06s ease-out;
-  opacity: 0.4;
-}
-.hexagonContainer .lightRay5 {
-  transition: transform 0.08s ease-out, opacity 0.08s ease-out;
-  opacity: 0.2;
-}
-.hexagonContainer .lightRay6 {
-  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-  opacity: 0.1;
-}
 
 .movingPoint {
   position: absolute;
@@ -157,4 +125,51 @@ header .container .subtitle {
 .movingPoint.trail {
   opacity: 0.5;
   transition: transform 50s linear, opacity 5s ease-in-out; /* Traînée plus lente */
+}
+
+section {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+section .right {
+  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  position: relative;
+}
+section .right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 5em;
+  -webkit-clip-path: polygon(100% 100%, 0% 0%, 0% 100%);
+          clip-path: polygon(100% 100%, 0% 0%, 0% 100%);
+  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
+  transform: translateY(-100%);
+}
+section .right::after {
+  content: "";
+  -webkit-clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+          clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+}
+section .left {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+section .box {
+  width: 100%;
+  position: relative;
+  padding: 20px;
+  color: white;
+  margin: 5em auto;
+}
+section .box h1 {
+  font-size: 2em;
+  text-align: center;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

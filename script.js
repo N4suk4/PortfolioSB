@@ -1,10 +1,14 @@
+const header = document.querySelector('header');
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+// Utilisez offsetWidth et offsetHeight pour définir la taille du canvas
+canvas.width = header.offsetWidth;
+canvas.height = header.offsetHeight;
 
 let particlesArray = [];
 let mouse = { x: null, y: null };
+
 
 class Particle {
   constructor(x, y, size, color, speedX, speedY, alphaMax) {
@@ -19,21 +23,36 @@ class Particle {
   }
 
   update() {
-    const dx = mouse.x - this.x;
-    const dy = mouse.y - this.y;
+    const dx = this.x - mouse.x;
+    const dy = this.y - mouse.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
-
-    // Si la souris est proche, écarter les particules
-    if (distance < 100) {
-      this.speedX += dx / distance * 0.1;
-      this.speedY += dy / distance * 0.1;
+    const forbiddenRadius = 80; // Rayon d'interdiction autour de la souris
+  
+    // Si la particule est dans la zone interdite, changer de direction
+    if (distance < forbiddenRadius) {
+      const directionX = dx / distance;
+      const directionY = dy / distance;
+  
+      // Augmentez la force de repulsion
+      const repulsionStrength = 4; // Augmentez cette valeur pour une force plus forte
+      this.x += directionX * repulsionStrength; 
+      this.y += directionY * repulsionStrength;
+    } else {
+      // Sinon, continuer à se déplacer normalement
+      this.x += this.speedX;
+      this.y += this.speedY;
     }
-
-    this.x += this.speedX;
-    this.y += this.speedY;
+  
     this.alpha += 0.005; // L'alpha monte progressivement jusqu'à un maximum
     if (this.alpha > this.alphaMax) this.alpha = this.alphaMax;
+  
+    // Si la particule sort des limites du header, la repositionner
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+    }
   }
+  
 
   draw() {
     ctx.globalAlpha = this.alpha; // Applique la transparence
@@ -46,7 +65,7 @@ class Particle {
 
 function createParticleBatch(numParticles, color, sizeRange, speedRange, alphaMax) {
   for (let i = 0; i < numParticles; i++) {
-    const x = Math.random() * canvas.width;
+    const x = Math.random() * canvas.width;  // Créer les particules dans les dimensions du header
     const y = Math.random() * canvas.height;
     const size = Math.random() * (sizeRange[1] - sizeRange[0]) + sizeRange[0];
     const speedX = (Math.random() - 0.5) * (speedRange[1] - speedRange[0]) + speedRange[0];
@@ -72,7 +91,7 @@ function createLineConnection(particle1, particle2, color) {
 }
 
 function drawLines() {
-  const connectionColor = "#FFFFFF"; // Couleur magenta
+  const connectionColor = "#FFFFFF"; // Couleur blanche
   const maxDistance = 100; // Distance maximale pour créer une connexion
 
   for (let i = 0; i < particlesArray.length; i++) {
@@ -91,14 +110,9 @@ function drawLines() {
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  particlesArray.forEach((particle, index) => {
+  particlesArray.forEach((particle) => {
     particle.update();
     particle.draw();
-
-    // Retirer les particules hors de l'écran
-    if (particle.x < 0 || particle.x > canvas.width || particle.y < 0 || particle.y > canvas.height) {
-      particlesArray.splice(index, 1);
-    }
   });
 
   if (particlesArray.length < 400) { // Limite pour éviter une surcharge de particules
@@ -111,8 +125,8 @@ function animate() {
 }
 
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = header.offsetWidth;
+  canvas.height = header.offsetHeight;
 }
 
 function handleMouseMove(event) {
@@ -125,27 +139,6 @@ window.addEventListener('mousemove', handleMouseMove);
 
 createParticles();
 animate();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

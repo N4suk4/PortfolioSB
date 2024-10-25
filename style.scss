@@ -4,6 +4,7 @@
   --HexagonLargeur: 65px;
   --HexagonHauteur: 36px;
   --HexagonColor: #1d254a;
+  --BoxColor: #006BE9;
 }
 
 body{
@@ -12,9 +13,10 @@ body{
   margin: 0;
   width: 100%;
   height: 100%;
+  font-family: 'Roboto Condensed';
 }
 
-header{
+  header{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -103,6 +105,7 @@ header{
       transition: transform 0.1s ease;
       transform-origin: center center;
       will-change: background-color, transform;
+      z-index: 0;
       
     
       &::before,
@@ -126,49 +129,6 @@ header{
       }
     }
   }
-
-  .lightRay {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 100%);
-    pointer-events: none;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-    filter: blur(15px);
-  }
-  
-  .lightRay1 {
-    transition: transform ease-out;
-  }
-  
-  .lightRay2 {
-    transition: transform 0.02s ease-out, opacity 0.02s ease-out;
-    opacity: 0.8;
-  }
-  
-  .lightRay3 {
-    transition: transform 0.04s ease-out, opacity 0.04s ease-out;
-    opacity: 0.6;
-  }
-  
-  .lightRay4 {
-    transition: transform 0.06s ease-out, opacity 0.06s ease-out;
-    opacity: 0.4;
-  }
-
-  .lightRay5 {
-    transition: transform 0.08s ease-out, opacity 0.08s ease-out;
-    opacity: 0.2;
-  }
-
-  .lightRay6 {
-    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-    opacity: 0.1;
-  }
-
 }
 
 .movingPoint {
@@ -186,5 +146,57 @@ header{
   opacity: 0.5;
   transition: transform 50s linear, opacity 5s ease-in-out; /* Traînée plus lente */
 }
+
+
+section{
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+
+  .right{
+    background: linear-gradient(90deg, var(--BoxColor), rgba(0,0,0,0));
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    position: relative;
+
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 5em;
+      clip-path: polygon(100% 100%, 0% 0%, 0% 100%);
+      background: linear-gradient(90deg, var(--BoxColor), rgba(0,0,0,0));
+      transform: translateY(-100%);
+    }
+
+    &::after{
+      content: '';
+      clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+    }
+
+  }
+
+  .left{
+    background: linear-gradient(90deg, rgba(0,0,0,0), var(--BoxColor));
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .box{
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    color: white;
+    margin: 5em auto;
+
+    h1{
+      font-size: 2em;
+      text-align: center;
+      color: white;
+    }
+  }
+}
+
 
 
