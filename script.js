@@ -2,7 +2,6 @@ const header = document.querySelector('header');
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
-// Utilisez offsetWidth et offsetHeight pour définir la taille du canvas
 canvas.width = header.offsetWidth;
 canvas.height = header.offsetHeight;
 
@@ -33,8 +32,8 @@ class Particle {
       const directionX = dx / distance;
       const directionY = dy / distance;
   
-      // Augmentez la force de repulsion
-      const repulsionStrength = 4; // Augmentez cette valeur pour une force plus forte
+      // Gère la force de repulsion
+      const repulsionStrength = 4; 
       this.x += directionX * repulsionStrength; 
       this.y += directionY * repulsionStrength;
     } else {
@@ -77,7 +76,7 @@ function createParticleBatch(numParticles, color, sizeRange, speedRange, alphaMa
 }
 
 function createParticles() {
-  createParticleBatch(300, "#F0F0F0", [1, 3], [0.1, 0.5], 0.4); // Petites particules
+  createParticleBatch(400, "#F0F0F0", [1, 3], [0.1, 0.5], 0.4); // Petites particules
   createParticleBatch(100, "#C0C0C0", [4, 6], [0.05, 0.2], 0.3); // Moyennes particules
   createParticleBatch(10, "#A0A0A0", [10, 20], [0.02, 0.1], 0.2); // Grandes particules
 }
@@ -91,9 +90,8 @@ function createLineConnection(particle1, particle2, color) {
 }
 
 function drawLines() {
-  const connectionColor = "#FFFFFF"; // Couleur blanche
-  const maxDistance = 100; // Distance maximale pour créer une connexion
-
+  const connectionColor = "#FFFFFF"; 
+  const maxDistance = 55; 
   for (let i = 0; i < particlesArray.length; i++) {
     for (let j = i + 1; j < particlesArray.length; j++) {
       const dx = particlesArray[i].x - particlesArray[j].x;
@@ -140,7 +138,19 @@ window.addEventListener('mousemove', handleMouseMove);
 createParticles();
 animate();
 
+const hexContainer = document.getElementsByClassName('hexagonContainer');
+const limitPosition = 364;
 
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY;
+
+  if (scrollPosition < limitPosition) {
+    hexContainer[0].style.top = limitPosition - scrollPosition + 'px';
+  }
+  else {
+    hexContainer[0].style.top = 0;
+  }
+});
 
 const container = document.querySelector('.hexagonContainer');
 

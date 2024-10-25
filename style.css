@@ -36,6 +36,8 @@ header canvas {
 }
 header .container {
   position: absolute;
+  pointer-events: none;
+  transition: all 0.5s ease;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 25%;
@@ -55,6 +57,7 @@ header .container .title {
 }
 header .container .subtitle {
   font-family: "Roboto Condensed";
+  font-size: 2em;
   display: block;
   text-align: center;
   text-transform: uppercase;
@@ -132,44 +135,52 @@ section {
   z-index: 10;
   pointer-events: none;
 }
-section .right {
+section .topRight {
   background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 80%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 80%, 100% 100%, 0% 100%);
   position: relative;
 }
-section .right::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 5em;
-  -webkit-clip-path: polygon(100% 100%, 0% 0%, 0% 100%);
-          clip-path: polygon(100% 100%, 0% 0%, 0% 100%);
-  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
-  transform: translateY(-100%);
-}
-section .right::after {
-  content: "";
-  -webkit-clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
-          clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
-}
-section .left {
+section .topLeft {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 80%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 80%, 100% 100%, 0% 100%);
 }
 section .box {
   width: 100%;
   position: relative;
   padding: 20px;
   color: white;
-  margin: 5em auto;
+  margin-top: 3em;
 }
 section .box h1 {
   font-size: 2em;
   text-align: center;
   color: white;
+  margin: 70px 0 0 0;
+}
+section .test {
+  margin: 0;
+  padding: 3em;
+  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
+}
+section .bottomRight {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 148px;
+  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
+          clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
+  transform: translateY(-0.5px);
+}
+section .bottomLeft {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 148px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
+          clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
+  transform: translateY(-0.5px);
 }/*# sourceMappingURL=style.css.map */
