@@ -16,6 +16,18 @@ body {
   font-family: "Roboto Condensed";
 }
 
+#loaderCanvasContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+}
+#loaderCanvasContainer .loaderCanvas {
+  display: block;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -159,11 +171,6 @@ section .box h1 {
   color: white;
   margin: 70px 0 0 0;
 }
-section .test {
-  margin: 0;
-  padding: 3em;
-  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
-}
 section .bottomRight {
   content: "";
   position: absolute;
@@ -183,4 +190,7 @@ section .bottomLeft {
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
           clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
   transform: translateY(-0.5px);
+}
+section .timeline {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
 }/*# sourceMappingURL=style.css.map */

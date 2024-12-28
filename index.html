@@ -9,66 +9,90 @@
     <title>Portfolio Sébastien Benoit</title>
 </head>
 <body>
-    <nav>
-        <div class="burger">
-            <span></span>
-        </div>
-        <ul class="tabs">
-            <li><a href="#presentation">Présentation</a></li>
-            <li><a href="#parcours">Parcours</a></li>
-            <li><a href="#projet">Projet</a></li>
-            <li><a href="#entreprise">Entreprise</a></li>
-            <li><a href="#veille">Veille technologique</a></li>
-        </ul>
-        <img src="images/navbar/Loupe_Recherche.png">
-    </nav>
-    <header>
-        <canvas id="particleCanvas"></canvas>
-        <div class="container">
-            <div class="title">SEBASTIEN<br>BENOIT</div>
-            <div class="subtitle"> etudiant BTS SIO </div>
-        </div>
-    </header>
-    <div class="hexagonContainer">
-        <div class="perspective"></div>
+    <div id="loaderCanvasContainer">
+        <canvas id="loaderCanvas"></canvas>
     </div>
-    <section>
-        <div>
-            <div class="box topRight" id="presentation">
-                <h1>Présentation</h1>
+    <div id="mainContent">    
+        <nav>
+            <div class="burger">
+                <span></span>
+            </div>
+            <ul class="tabs">
+                <li><a href="#presentation">Présentation</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#projet">Projet</a></li>
+                <li><a href="#entreprise">Entreprise</a></li>
+                <li><a href="#veille">Veille technologique</a></li>
+            </ul>
+        </nav>
+        <header>
+            <canvas id="particleCanvas"></canvas>
+            <div class="container">
+                <div class="title">SEBASTIEN<br>BENOIT</div>
+                <div class="subtitle"> etudiant BTS SIO </div>
+            </div>
+        </header>
+        <div class="hexagonContainer">
+            <div class="perspective"></div>
+        </div>
+        <section>
+            <div>
+                <div class="box topRight" id="presentation">
+                    <h1>Présentation</h1>
+                </div>
+                <div class="presContent">
+                    
+                </div>
+                <div class="bottomRight"></div>
             </div>
             <div>
-                <p class="test">
-                    est un symbole typographique qui sert à désigner en français un paragraphe dans un renvoi (par exemple, « voir ouvrage de G., chap. 6, § 7. »). Il est suivi d'une espace insécable et des caractères désignant le paragraphe auquel il renvoie. Il est parfois doublé pour indiquer plusieurs paragraphes (par exemple, « voir ouvrage de G., chap. 6, §§ 7 à 10. »). Cependant l’Imprimerie nationale recommande de proscrire ces redoublements1. Le pied-de-mouche (¶) est aussi un symbole typographique tombé en désuétude qui pouvait signaler le début d'un paragraphe. Il sert toujours dans certains traitements de texte pour marquer la fin d'un paragraphe quand on affiche les caractères cachés.
-                </p>
+                <div class="box topLeft" id="parcours">
+                    <h1>Parcours</h1>
+                </div>
+                <div class="timeline">
+                    <div class="line">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1000 500"
+                            class="arrow"
+                        >
+                            <path d="M955 240 L975 250 L955 260 L955 251 L25 251 L25 249 L955 249 Z" fill="#ffff00" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="bottomLeft"></div>
             </div>
-            <div class="bottomRight"></div>
-        </div>
-        <div>
-            <div class="box topLeft" id="parcours">
-                <h1>Parcours</h1>
+            <div>
+                <div class="box topRight" id="projet">
+                    <h1>Projet</h1>
+                </div>
+                <div class="bottomRight"></div>
             </div>
-            <div class="bottomLeft"></div>
-        </div>
-        <div>
-            <div class="box topRight" id="projet">
-                <h1>Projet</h1>
+            <div>
+                <div class="box topLeft" id="entreprise">
+                    <h1>Entreprise</h1>
+                </div>
+                <div class="bottomLeft"></div>
             </div>
-            <div class="bottomRight"></div>
-        </div>
-        <div>
-            <div class="box topLeft" id="entreprise">
-                <h1>Entreprise</h1>
+            <div>
+                <div class="box topRight" id="veille">
+                    <h1>Veille technologique</h1>   
+                </div>
+                <div class="bottomRight"></div>
             </div>
-            <div class="bottomLeft"></div>
-        </div>
-        <div>
-            <div class="box topRight" id="veille">
-                <h1>Veille technologique</h1>   
+        </section>
+        <footer>
+            <div class="container">
+                <div class="left">
+                    <h1>SEBASTIEN<br>BENOIT</h1>
+                    <p>Etudiant en BTS SIO</p>
+                </div>
+                <div class="right">
+                    <h1>Me contacter</h1>
+                </div>
             </div>
-            <div class="bottomRight"></div>
-        </div>
-    </section>
+        </footer>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="script.js" defer></script>   

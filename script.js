@@ -1,3 +1,112 @@
+const loaderCanvas = document.getElementById('loaderCanvas');
+const loaderCtx = loaderCanvas.getContext('2d');
+
+loaderCanvas.width = 100; // Taille du logo
+loaderCanvas.height = 100;
+
+let loaderParticles = [];
+
+class LoaderParticle {
+    constructor(x, y, size, color, speed, alphaMax) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.alpha = 0.3;
+        this.alphaMax = alphaMax;
+        this.distanceFromCenter = Math.random() * 40 + 10;
+        this.angle = Math.random() * Math.PI * 2;
+        this.baseSpeed = speed;
+        this.randomSpeed = (Math.random() - 0.5) * 0.1; // Variation aléatoire de la vitesse
+        this.rotationSpeed = 0.005 + Math.random() * 0.02; // Vitesse de rotation aléatoire
+    }
+
+    update() {
+      // Applique un mouvement de rotation légèrement aléatoire
+      this.angle += this.rotationSpeed;
+  
+      // Oscillation contrôlée de la distance
+      this.distanceFromCenter += Math.sin(this.angle * 0.5) * this.baseSpeed;
+  
+      // Vérifie si la particule est trop proche ou trop éloignée du centre, puis la réinitialise
+      const maxDistance = 50;
+      const minDistance = 10;
+  
+      if (this.distanceFromCenter > maxDistance || this.distanceFromCenter < minDistance) {
+          // Réinitialise la distance et l'angle pour un mouvement fluide et continu
+          this.distanceFromCenter = Math.random() * (maxDistance - minDistance) + minDistance;
+          this.angle = Math.random() * Math.PI * 2; // Angle aléatoire pour éviter un mouvement répétitif
+      }
+  
+      // Calcule les nouvelles positions basées sur l'angle et la distance
+      const centerX = loaderCanvas.width / 2;
+      const centerY = loaderCanvas.height / 2;
+      this.x = centerX + Math.cos(this.angle) * this.distanceFromCenter;
+      this.y = centerY + Math.sin(this.angle) * this.distanceFromCenter;
+  
+      // Ajuste la taille et l'opacité en fonction de la distance pour un effet de profondeur
+      this.size = 3 * (1 - (this.distanceFromCenter / 70));
+      this.alpha = Math.max(0.1, 1 - (this.distanceFromCenter / 70));
+  }
+  
+
+    draw() {
+        loaderCtx.globalAlpha = this.alpha;
+        loaderCtx.beginPath();
+        loaderCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        loaderCtx.fillStyle = this.color;
+        loaderCtx.fill();
+    }
+}
+
+function createLoaderParticles(numParticles, color) {
+    for (let i = 0; i < numParticles; i++) {
+        const size = Math.random() * 3 + 1;
+        const speed = 0.05 + Math.random() * 0.1;
+        loaderParticles.push(new LoaderParticle(0, 0, size, color, speed, 1));
+    }
+}
+
+function drawConnections() {
+    const centerX = loaderCanvas.width / 2;
+    const centerY = loaderCanvas.height / 2;
+
+    loaderParticles.forEach((particle) => {
+        loaderCtx.beginPath();
+        loaderCtx.moveTo(centerX, centerY);
+        loaderCtx.lineTo(particle.x, particle.y);
+        loaderCtx.lineWidth = 0.5;
+        loaderCtx.strokeStyle = `rgba(255, 255, 255, ${particle.alpha})`;
+        loaderCtx.stroke();
+    });
+}
+
+function animateLoader() {
+    loaderCtx.clearRect(0, 0, loaderCanvas.width, loaderCanvas.height);
+
+    loaderParticles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+    });
+
+    drawConnections();
+
+    requestAnimationFrame(animateLoader);
+}
+
+createLoaderParticles(50, "#F0F0F0");
+animateLoader();
+
+window.addEventListener('load', () => {
+  // Simuler un temps de chargement de 3 secondes (3000 millisecondes)
+  setTimeout(() => {
+      document.getElementById('loaderCanvasContainer').style.display = 'none'; // Cacher le loader
+      document.getElementById('mainContent').style.display = 'block'; // Afficher le contenu principal
+  }, 3000); // Change le nombre ici pour ajuster le temps de chargement
+});
+
+
+
 const header = document.querySelector('header');
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
@@ -231,3 +340,10 @@ document.querySelector('.hexagonContainer').addEventListener('mouseleave', () =>
   });
 });
 
+const burger = document.querySelector('.burger');
+const tabs = document.querySelector('.tabs')
+
+burger.addEventListener('click', () =>{
+  burger.classList.toggle('active');
+  tabs.classList.toggle('swipe');
+})

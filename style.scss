@@ -16,7 +16,21 @@ body{
   font-family: 'Roboto Condensed';
 }
 
-  header{
+#loaderCanvasContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; 
+  height: 100px; 
+
+  .loaderCanvas {
+    display: block;
+  }
+}
+
+
+header{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -182,11 +196,7 @@ section{
     }
   }
 
-  .test{
-    margin: 0;
-    padding: 3em;
-    background: linear-gradient(90deg, var(--BoxColor), rgba(0,0,0,0));
-  }
+  
 
   .bottomRight{
     content: '';
@@ -207,7 +217,10 @@ section{
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
     transform: translateY(-0.5px);
   }
-}
 
+  .timeline{
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
+  }
+}
 
 
