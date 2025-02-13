@@ -5,6 +5,13 @@
   --HexagonHauteur: 36px;
   --HexagonColor: #1d254a;
   --BoxColor: #006BE9;
+  --TopTimelineColor: #00E9E9;
+  --BottomTimelineColor: #F88821;
+  --Title: 8em;
+  --Subtitle: 2.5em;
+  --H1: 2em;
+  --H2: 1.5em;
+  --Text: 1em;
 }
 
 body {
@@ -58,7 +65,7 @@ header .container .title {
   font-weight: 900;
   font-family: "Roboto Condensed";
   color: transparent;
-  font-size: 120px;
+  font-size: var(--Title);
   background: url("https://media.gettyimages.com/id/1179289433/fr/vid%C3%A9o/4k-r%C3%A9solution-technologie-r%C3%A9sum%C3%A9-fond-fond-num%C3%A9rique-de-boucle-donde-de-donn%C3%A9es-binaires.jpg?s=640x640&k=20&c=eldEZJx4IMeayCIx1fYb6QdpLiVyPVG5eE4DA2gyXRU=") no-repeat center center;
   background-position: 50% 50%;
   -webkit-background-clip: text;
@@ -69,7 +76,7 @@ header .container .title {
 }
 header .container .subtitle {
   font-family: "Roboto Condensed";
-  font-size: 2em;
+  font-size: var(--Subtitle);
   display: block;
   text-align: center;
   text-transform: uppercase;
@@ -166,7 +173,7 @@ section .box {
   margin-top: 3em;
 }
 section .box h1 {
-  font-size: 2em;
+  font-size: var(--H1);
   text-align: center;
   color: white;
   margin: 70px 0 0 0;
@@ -192,5 +199,22 @@ section .bottomLeft {
   transform: translateY(-0.5px);
 }
 section .timeline {
+  align-items: center;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
+}
+section .timeline .professionelTimeline {
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  font-size: var(--H2);
+  font-family: "Roboto Condensed";
+  color: var(--TopTimelineColor);
+}
+section .timeline .scolaireTimeline {
+  position: absolute;
+  top: 47%;
+  left: 6%;
+  font-size: var(--H2);
+  font-family: "Roboto Condensed";
+  color: var(--BottomTimelineColor);
 }/*# sourceMappingURL=style.css.map */
