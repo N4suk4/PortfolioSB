@@ -9,8 +9,10 @@
 
   // Global Colors
   --BoxColor: #006BE9;
-  --TopTimelineColor: #00E9E9;
-  --BottomTimelineColor: #F88821;
+  --TopTimelineColor: #00e9e9;
+  --TopBackground: rgba(0, 233, 233, 0.8);
+  --BottomTimelineColor: rgb(248, 136, 33);
+  --BottomBackground: rgba(248, 136, 33, 0.8);
 
   //Font Sizes
   --Title: 8em;
@@ -18,6 +20,7 @@
   --H1: 2em;
   --H2: 1.5em;
   --Text: 1em;
+  --SmallText: 0.9em;
 }
 
 body{
@@ -197,7 +200,7 @@ section{
   .box{
     width: 100%;
     position: relative;
-    padding: 20px;
+    padding: 20px 0;
     color: white;
     margin-top: 3em;
 
@@ -209,8 +212,6 @@ section{
     }
   }
 
-  
-
   .bottomRight{
     content: '';
     position: absolute;
@@ -218,7 +219,7 @@ section{
     height: 148px;
     background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
-    transform: translateY(-0.5px);
+    transform: translateY(-0.1px);
   }
 
   .bottomLeft{
@@ -228,29 +229,219 @@ section{
     height: 148px;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
-    transform: translateY(-0.5px);
+    transform: translateY(-0.1px);
   }
 
   .timeline{
+    position: relative;
     align-items: center;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
-  
-    .professionelTimeline{
+    z-index: 1;
+
+    .contextBox{
       position: absolute;
-      top: 35%;
-      left: 5%;
-      font-size: var(--H2);
-      font-family: 'Roboto Condensed';
-      color: var(--TopTimelineColor);
+      top: 50%;
+      left: 2%;
+      height: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateY(-50%);
+  
+      .contextTimeline{
+        text-align: center;
+        font-size: var(--H2);
+        font-family: 'Roboto Condensed';
+        color: var(--TopTimelineColor);
+      }
+
+      .contextBottom{
+        color: var(--BottomTimelineColor);
+      }
     }
 
-    .scolaireTimeline{
+    .timelineTopItem{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       position: absolute;
-      top: 47%;
-      left: 6%;
-      font-size: var(--H2);
-      font-family: 'Roboto Condensed';
-      color: var(--BottomTimelineColor);
+
+      .timelineContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--TopBackground);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        color: black;
+        width: 150px;
+        height: 100px;
+        position: relative;
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: var(--SmallText);
+      }
+
+      img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    .educateurContainer{
+      position: absolute;
+      display: flex;
+      width: 30%;
+      justify-content: space-between;
+      bottom: 50%;
+      left: 25%;
+
+      .educateur{
+        position: relative;
+        bottom: 50%;
+        left: 30%;
+
+        .lineSTL{
+          width: 2px;
+          height: 160px;
+          background-color: var(--TopTimelineColor);
+        }
+      }
+      .smallTL{
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        height: 10px;
+        background-color: var(--TopTimelineColor);
+        border-radius: 10px;
+        transform: translate(30%, -75%);
+      }
+    }
+
+    .intersport{
+      bottom: 50%;
+      left: 68%;
+
+      .lineSTL{
+        width: 2px;
+        height: 160px;
+        background-color: var(--TopTimelineColor);
+      }
+
+      .smallTL{
+        position: absolute;
+        top: 100%;
+        width: 125px;
+        height: 10px;
+        background-color: var(--TopTimelineColor);
+        border-radius: 10px;
+        transform: translate(0, -75%);
+      }
+    }
+
+    .timelineBottomItem{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+
+      .circle {
+        width: 20px;
+        height: 20px;
+        background-color: var(--BottomTimelineColor);
+        border-radius: 50%;
+      }
+
+      .line {
+        width: 2px;
+        height: 150px;
+        background-color: var(--BottomTimelineColor);
+      }
+      .timelineContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--BottomBackground);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        color: black;
+        width: 150px;
+        height: 100px;
+        position: relative;
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: var(--SmallText);
+      }
+
+      img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    .ind{
+      top: 48.5%;
+      left: 5%;
+    }
+
+    .cqpet{
+      top: 48.5%;
+      left: 40%;
+    }
+    .diderot{
+      top: 48.5%;
+      left: 20%;
+
+      .smallTL{
+        width: 250px;
+        height: 10px;
+        background-color: var(--BottomTimelineColor);
+        border-radius: 10px;
+        transform: translate(-25%, 58%);
+      }
+
+      .lineSTL{
+        width: 2px;
+        height: 160px;
+        background-color: var(--BottomTimelineColor);
+      }
+    }
+
+    
+
+    .epsi{
+      top: 48.5%;
+      left: 75%;
+
+      .smallTL{
+        width: 250px;
+        height: 10px;
+        background-color: var(--BottomTimelineColor);
+        border-radius: 10px;
+        transform: translate(25%, 58%);
+      }
+
+      .lineSTL{
+        width: 2px;
+        height: 160px;
+        background-color: var(--BottomTimelineColor);
+      }
     }
   }
 }
