@@ -9,12 +9,17 @@
   --TopBackground: rgba(0, 233, 233, 0.8);
   --BottomTimelineColor: rgb(248, 136, 33);
   --BottomBackground: rgba(248, 136, 33, 0.8);
+  --SubtitleTitle: rgb(248, 136, 33);
+  --OptionColor: rgb(249, 189, 133);
+  --TextColor: #9bfbfb;
   --Title: 8em;
   --Subtitle: 2.5em;
   --H1: 2em;
   --H2: 1.5em;
-  --Text: 1em;
+  --H3: 1.4em;
+  --Text: 1.3em;
   --SmallText: 0.9em;
+  --GlobalContentPadding: 3%;
 }
 
 body {
@@ -63,6 +68,7 @@ header .container {
   transform: translate(-50%, -50%);
   left: 50%;
   top: 25%;
+  z-index: 10;
 }
 header .container .title {
   font-weight: 900;
@@ -89,6 +95,7 @@ header .container .subtitle {
 
 .hexagonContainer {
   position: fixed;
+  top: 40vh;
   left: -100px;
   width: 100vw;
   height: 100vh;
@@ -175,8 +182,9 @@ section .box {
   color: white;
   margin-top: 3em;
 }
-section .box h1 {
-  font-size: var(--H1);
+section .box .subtitlePart {
+  font-size: var(--Subtitle);
+  font-weight: bold;
   text-align: center;
   color: white;
   margin: 70px 0 0 0;
@@ -200,6 +208,136 @@ section .bottomLeft {
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
           clip-path: polygon(0% 0%, 100% 0%, 0% 100%, 0% 0%);
   transform: translateY(-0.1px);
+}
+section .presContent {
+  position: relative;
+  align-items: center;
+  background: linear-gradient(90deg, var(--BoxColor), rgba(0, 0, 0, 0));
+  padding: var(--GlobalContentPadding);
+  z-index: 1;
+}
+section .presContent h1 {
+  margin-bottom: 10px;
+  color: var(--SubtitleTitle);
+  text-align: left;
+  font-size: var(--H1);
+  font-family: "Roboto Condensed";
+}
+section .presContent p {
+  font-size: var(--Text);
+  color: var(--TextColor);
+  text-align: left;
+}
+section .presContent h2 {
+  font-size: var(--H2);
+  color: var(--OptionColor);
+  margin-top: 50px;
+  text-align: left;
+  text-align: center;
+}
+section .presContent .btsOptions {
+  display: flex;
+  justify-content: space-around;
+}
+section .presContent .btsOptions .option {
+  width: 40%;
+}
+section .presContent .btsOptions .option h3 {
+  font-size: var(--H3);
+  color: var(--OptionColor);
+  text-align: left;
+}
+section .presContent .btsOptions .option ul {
+  list-style-type: none;
+}
+section .presContent .btsOptions .option ul li {
+  position: relative;
+  padding: 20px;
+  font-size: var(--Text);
+  color: var(--TextColor);
+  margin: 10px 0;
+}
+section .presContent .btsOptions .option ul .optionSisr::before {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-image: url("images/icones/reseau.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+section .presContent .btsOptions .option ul .optionSlam::before {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-image: url("images/icones/developpement.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+section .presContent .apropos {
+  width: 70%;
+}
+section .presContent .competences {
+  margin-top: 5vh;
+}
+section .presContent .competences ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+section .presContent .competences ul .containerCard {
+  position: relative;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-direction: column;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+section .presContent .competences ul .containerCard .card {
+  width: 300px;
+  height: -moz-fit-content;
+  height: fit-content;
+  perspective: 1000px;
+  justify-content: center;
+}
+section .presContent .competences ul .containerCard .card .contentCard {
+  height: 100%;
+  border-radius: 25px;
+  transition: all 0.1s ease-out;
+  text-align: center;
+  padding: 20px;
+  background: var(--BoxColor);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+section .presContent .competences ul .containerCard .card .contentCard img {
+  height: 260px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+section .presContent .competences ul .containerCard .card .contentCard p {
+  text-align: center;
+}
+section .presContent .competences ul .containerCard .card .glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  transition: all 0.1s ease-out;
+  mix-blend-mode: color-burn;
 }
 section .timeline {
   position: relative;
@@ -283,7 +421,7 @@ section .timeline .educateurContainer .smallTL {
   height: 10px;
   background-color: var(--TopTimelineColor);
   border-radius: 10px;
-  transform: translate(30%, -75%);
+  transform: translate(25%, -75%);
 }
 section .timeline .intersport {
   bottom: 50%;
