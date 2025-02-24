@@ -13,14 +13,21 @@
   --TopBackground: rgba(0, 233, 233, 0.8);
   --BottomTimelineColor: rgb(248, 136, 33);
   --BottomBackground: rgba(248, 136, 33, 0.8);
+  --SubtitleTitle: rgb(248, 136, 33);
+  --OptionColor: rgb(249, 189, 133);
+  --TextColor: #9bfbfb;
 
   //Font Sizes
   --Title: 8em;
   --Subtitle: 2.5em;
   --H1: 2em;
   --H2: 1.5em;
-  --Text: 1em;
+  --H3: 1.4em;
+  --Text: 1.3em;
   --SmallText: 0.9em;
+
+  //Sizes
+  --GlobalContentPadding: 3%;
 }
 
 body{
@@ -79,6 +86,7 @@ header{
     pointer-events: none;
     transition: all 0.5s ease;
     @include center();
+    z-index: 10;
 
     .title {
       font-weight: 900;
@@ -109,6 +117,7 @@ header{
 
 .hexagonContainer {
   position: fixed;
+  top: 40vh;
   left: -100px;
   width: 100vw;
   height: 100vh;
@@ -204,8 +213,9 @@ section{
     color: white;
     margin-top: 3em;
 
-    h1{
-      font-size: var(--H1);
+    .subtitlePart{
+      font-size: var(--Subtitle);
+      font-weight: bold;
       text-align: center;
       color: white;
       margin: 70px 0 0 0;
@@ -232,6 +242,155 @@ section{
     transform: translateY(-0.1px);
   }
 
+  .presContent{
+    position: relative;
+    align-items: center;
+    background: linear-gradient(90deg, var(--BoxColor), rgba(0,0,0,0));
+    padding:var(--GlobalContentPadding);
+    z-index: 1;
+
+    h1{
+      margin-bottom: 10px;
+      color: var(--SubtitleTitle);
+      text-align: left;
+      font-size: var(--H1);
+      font-family: 'Roboto Condensed';
+    }
+
+    p{
+      font-size: var(--Text);
+      color: var(--TextColor);
+      text-align: left;
+    }
+
+    h2{
+      font-size: var(--H2);
+      color: var(--OptionColor);
+      margin-top: 50px;
+      text-align: left;
+      text-align: center;
+    }
+
+    .btsOptions{
+      display: flex;
+      justify-content: space-around;
+
+      .option{
+        width: 40%;
+
+        h3{
+          font-size: var(--H3);
+          color: var(--OptionColor);
+          text-align: left;
+        }
+
+        ul{
+          list-style-type: none;
+
+          li{
+            position: relative;
+            padding: 20px;
+            font-size: var(--Text);
+            color: var(--TextColor);
+            margin: 10px 0;
+          }
+
+          .optionSisr::before{
+            content: "";
+            position: absolute;
+            left: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px; 
+            height: 30px;
+            background-image: url('images/icones/reseau.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+
+          .optionSlam::before{
+            content: "";
+            position: absolute;
+            left: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px; 
+            height: 30px;
+            background-image: url('images/icones/developpement.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+
+    .apropos{
+      width: 70%;
+    }
+
+    .competences{
+      margin-top: 5vh;
+
+      ul{
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .containerCard{
+          position: relative;
+          
+          display: flex;
+          width: fit-content;
+          flex-direction: column;
+          margin: 10px;
+          align-items: center;
+          justify-content: center;
+          pointer-events: all;
+      
+          .card{
+            width: 300px;
+            height: fit-content;
+            perspective: 1000px;
+            justify-content: center;
+
+            .contentCard{
+              height: 100%;
+              border-radius: 25px;
+              transition: all 0.1s ease-out;
+              text-align: center;
+              padding :20px;
+              background: var(--BoxColor);
+              border-radius: 25px;
+              box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      
+              img{
+                height: 260px;
+                object-fit: fill;
+              }
+
+              p{
+                text-align: center;
+              }
+            }
+      
+            .glow{
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 25px;
+              transition: all 0.1s ease-out;
+              mix-blend-mode: color-burn;
+            }
+          }
+        }
+      }
+    }
+  }
+
+          
   .timeline{
     position: relative;
     align-items: center;
@@ -305,145 +464,144 @@ section{
       left: 25%;
 
       .educateur{
-        position: relative;
-        bottom: 50%;
-        left: 30%;
-
-        .lineSTL{
-          width: 2px;
-          height: 160px;
-          background-color: var(--TopTimelineColor);
-        }
-      }
-      .smallTL{
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        height: 10px;
-        background-color: var(--TopTimelineColor);
-        border-radius: 10px;
-        transform: translate(30%, -75%);
-      }
-    }
-
-    .intersport{
+      position: relative;
       bottom: 50%;
-      left: 68%;
+      left: 30%;
 
       .lineSTL{
         width: 2px;
         height: 160px;
         background-color: var(--TopTimelineColor);
       }
-
-      .smallTL{
-        position: absolute;
-        top: 100%;
-        width: 125px;
-        height: 10px;
-        background-color: var(--TopTimelineColor);
-        border-radius: 10px;
-        transform: translate(0, -75%);
-      }
     }
-
-    .timelineBottomItem{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .smallTL{
       position: absolute;
-
-      .circle {
-        width: 20px;
-        height: 20px;
-        background-color: var(--BottomTimelineColor);
-        border-radius: 50%;
-      }
-
-      .line {
-        width: 2px;
-        height: 150px;
-        background-color: var(--BottomTimelineColor);
-      }
-      .timelineContent {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: var(--BottomBackground);
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        color: black;
-        width: 150px;
-        height: 100px;
-        position: relative;
-      }
-
-      p {
-        margin: 5px 0;
-        font-size: var(--SmallText);
-      }
-
-      img{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        border-radius: 10px;
-      }
-    }
-
-    .ind{
-      top: 48.5%;
-      left: 5%;
-    }
-
-    .cqpet{
-      top: 48.5%;
-      left: 40%;
-    }
-    .diderot{
-      top: 48.5%;
-      left: 20%;
-
-      .smallTL{
-        width: 250px;
-        height: 10px;
-        background-color: var(--BottomTimelineColor);
-        border-radius: 10px;
-        transform: translate(-25%, 58%);
-      }
-
-      .lineSTL{
-        width: 2px;
-        height: 160px;
-        background-color: var(--BottomTimelineColor);
-      }
-    }
-
-    
-
-    .epsi{
-      top: 48.5%;
-      left: 75%;
-
-      .smallTL{
-        width: 250px;
-        height: 10px;
-        background-color: var(--BottomTimelineColor);
-        border-radius: 10px;
-        transform: translate(25%, 58%);
-      }
-
-      .lineSTL{
-        width: 2px;
-        height: 160px;
-        background-color: var(--BottomTimelineColor);
-      }
+      top: 100%;
+      width: 100%;
+      height: 10px;
+      background-color: var(--TopTimelineColor);
+      border-radius: 10px;
+      transform: translate(25%, -75%);
     }
   }
+
+  .intersport{
+    bottom: 50%;
+    left: 68%;
+
+    .lineSTL{
+      width: 2px;
+      height: 160px;
+      background-color: var(--TopTimelineColor);
+    }
+
+    .smallTL{
+      position: absolute;
+      top: 100%;
+      width: 125px;
+      height: 10px;
+      background-color: var(--TopTimelineColor);
+      border-radius: 10px;
+      transform: translate(0, -75%);
+    }
+  }
+
+  .timelineBottomItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      background-color: var(--BottomTimelineColor);
+      border-radius: 50%;
+    }
+
+    .line {
+      width: 2px;
+      height: 150px;
+      background-color: var(--BottomTimelineColor);
+    }
+
+    .timelineContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: var(--BottomBackground);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: black;
+      width: 150px;
+      height: 100px;
+      position: relative;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: var(--SmallText);
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      border-radius: 10px;
+    }
+  }
+
+  .ind{
+    top: 48.5%;
+    left: 5%;
+  }
+
+  .cqpet{
+    top: 48.5%;
+    left: 40%;
+  }
+
+  .diderot{
+    top: 48.5%;
+    left: 20%;
+
+    .smallTL{
+      width: 250px;
+      height: 10px;
+      background-color: var(--BottomTimelineColor);
+      border-radius: 10px;
+      transform: translate(-25%, 58%);
+    }
+
+    .lineSTL{
+      width: 2px;
+      height: 160px;
+      background-color: var(--BottomTimelineColor);
+    }
+  }
+  .epsi{
+    top: 48.5%;
+    left: 75%;
+
+    .smallTL{
+      width: 250px;
+      height: 10px;
+      background-color: var(--BottomTimelineColor);
+      border-radius: 10px;
+      transform: translate(25%, 58%);
+    }
+
+    .lineSTL{
+      width: 2px;
+      height: 160px;
+      background-color: var(--BottomTimelineColor);
+    }
+  }
+}
 }
 
 
