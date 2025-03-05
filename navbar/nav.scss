@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --Primary:#006BE9;
+    --Font: white;
+    --Border: black;
+}
+
+
+.navigation{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    isolation: isolate;
+    align-items: center;
+    background-color: var(--Primary);
+    z-index: 999;
+
+    ul{
+        width: 100%;
+        justify-content: space-evenly;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing);
+        margin-block: calc(var(--spacing) * 2);
+        transition: all 0.25s ease-in-out;
+        padding: 0;
+
+        li{
+            position: relative;
+            list-style: none;
+            height: 70px;
+            z-index: 1;
+
+            &.active{ 
+                .icon{
+                    transform: translateY(35px);
+                }
+                .text{
+                    opacity: 1;
+                    transform: translateY(-20px);
+                }
+            }
+
+            a{
+                position: relative;
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                font-weight: 500 ;
+
+                .icon{
+                    position: relative;
+                    display: block;
+                    line-height: 75px;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    transition: all 0.5s ease-in-out;
+                    color: white;
+                }
+
+                .text{
+                    position: absolute;
+                    color: white;
+                    font-weight: 400;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.05em;
+                    transition: all 0.5s ease-in-out;
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
+        }
+    }
+
+    .indicator{
+        position: absolute;
+        top: 50%;
+        width: 70px;
+        height: 70px;
+        background: rgb(248, 136, 33);
+        border-radius: 50%;
+        border: 6px solid var(--clr);
+        transition: all 0.5s ease-in-out;
+        transform: translateX(-50%);
+    }
+}

@@ -3,39 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="navbar/nav.css">
     <link rel="stylesheet" href="style.css">
     <meta name="description" content="Portfolio de Sébastien Benoit">
     <title>Portfolio Sébastien Benoit</title>
 </head>
 <body>
-    <div id="loaderCanvasContainer">
-         <canvas id="loaderCanvas"></canvas> 
-    </div>
     <div id="mainContent">    
-        <nav>
-            <div class="burger">
-                <span></span>
-            </div>
-            <ul class="tabs">
-                <li><a href="#presentation">Présentation</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#projet">Projet</a></li>
-                <li><a href="#entreprise">Entreprise</a></li>
-                <li><a href="#veille">Veille technologique</a></li>
+        <nav class="navigation">
+            <ul class="nav-list">
+                <li class="list">
+                    <a href="#presentation">
+                        <span class="icon">
+                            <ion-icon name="man-outline"></ion-icon>
+                        </span>
+                        <span class="text">Présentation</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#parcours">
+                        <span class="icon">
+                            <ion-icon name="map-outline"></ion-icon>
+                        </span>
+                        <span class="text">Parcours</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#projet">
+                        <span class="icon">
+                            <ion-icon name="folder-open-outline"></ion-icon>
+                        </span>
+                        <span class="text">Projet</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#entreprise">
+                        <span class="icon">
+                            <ion-icon name="business-outline"></ion-icon>
+                        </span>
+                        <span class="text">Entreprise</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#veille">
+                        <span class="icon">
+                            <ion-icon name="desktop-outline"></ion-icon>
+                        </span>
+                        <span class="text">Veille Technologique</span>
+                    </a>
+                </li>
             </ul>
+            <div class="indicator"></div>
         </nav>
-        <header>
+        <header data-sec="presentation">
             <canvas id="particleCanvas"></canvas>
             <div class="container">
                 <div class="title">SEBASTIEN<br>BENOIT</div>
                 <div class="subtitle"> etudiant BTS SIO </div>
             </div>
         </header>
-        <div class="hexagonContainer">
+        <!-- <div class="hexagonContainer">
             <div class="perspective"></div>
-        </div>
-        <section>
+        </div> -->
+        <section class="content">
             <div>
                 <div class="box topRight" id="presentation">
                     <div class="subtitlePart">Présentation</div>
@@ -323,7 +353,7 @@
                 <div class="bottomRight"></div>
             </div>
             <div>
-                <div class="box topLeft" id="parcours">
+                <div class="box topLeft" id="parcours" data-sec="parcours">
                     <div class="subtitlePart">Parcours</div>
                 </div>
                 <div class="timeline">
@@ -425,19 +455,19 @@
                 <div class="bottomLeft"></div>
             </div>
             <div>
-                <div class="box topRight" id="projet">
+                <div class="box topRight" id="projet" data-sec="projet">
                     <div class="subtitlePart">Projet</div>
                 </div>
                 <div class="bottomRight"></div>
             </div>
             <div>
-                <div class="box topLeft" id="entreprise">
+                <div class="box topLeft" id="entreprise" data-sec="entreprise">
                     <div class="subtitlePart">Entreprise</div>
                 </div>
                 <div class="bottomLeft"></div>
             </div>
             <div>
-                <div class="box topRight" id="veille">
+                <div class="box topRight" id="veille" data-sec="veille">
                     <div class="subtitlePart">Veille Technologique</div>  
                 </div>
                 <div class="bottomRight"></div>
@@ -455,9 +485,12 @@
             </div>
         </footer>
     </div>
+    <script src="navbar/navbar.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
-    <script src="background.js" defer></script> 
+    <script src="background.js"></script> 
     <script src="card.js "></script>  
 </body>
 </html>

@@ -19,6 +19,8 @@ card.forEach( el => {
         el.children[0].style.transform = `rotateX(${- angleX}deg) rotateY(${angleY}deg)`;
         el.children[1].style.transform = `rotateX(${- angleX}deg) rotateY(${angleY}deg)`;
         el.children[1].style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgb(205, 199, 176), transparent)`;
+        el.children[0].style.transition = `all 0.1s ease-out`;
+        el.children[1].style.transition = `all 0.1s ease-out`;
 
     });
 
@@ -26,6 +28,8 @@ card.forEach( el => {
         el.children[0].style.transform = `rotateX(0deg) rotateY(0deg)`;
         el.children[1].style.transform = `rotateX(0deg) rotateY(0deg)`;
         el.children[1].style.background = `none`;
+        el.children[0].style.transition = `all 1s ease`;
+        el.children[1].style.transition = `all 1s ease`;
 
     }
     );
