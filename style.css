@@ -22,13 +22,15 @@
   --GlobalContentPadding: 3%;
 }
 
-body {
+body,
+html {
   box-sizing: border-box;
   background-color: #000000;
   margin: 0;
   width: 100%;
   height: 100%;
   font-family: "Roboto Condensed";
+  scroll-behavior: smooth;
 }
 
 #loaderCanvasContainer {
@@ -345,6 +347,10 @@ section .timeline {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--BoxColor));
   z-index: 1;
 }
+section .timeline svg {
+  height: 850px;
+  width: 98vw;
+}
 section .timeline .contextBox {
   position: absolute;
   top: 50%;
@@ -417,7 +423,7 @@ section .timeline .educateurContainer .educateur .lineSTL {
 section .timeline .educateurContainer .smallTL {
   position: absolute;
   top: 100%;
-  width: 100%;
+  width: 30vw;
   height: 10px;
   background-color: var(--TopTimelineColor);
   border-radius: 10px;
@@ -435,7 +441,7 @@ section .timeline .intersport .lineSTL {
 section .timeline .intersport .smallTL {
   position: absolute;
   top: 100%;
-  width: 125px;
+  width: 7vw;
   height: 10px;
   background-color: var(--TopTimelineColor);
   border-radius: 10px;
@@ -497,7 +503,7 @@ section .timeline .diderot {
   left: 20%;
 }
 section .timeline .diderot .smallTL {
-  width: 250px;
+  width: 15vw;
   height: 10px;
   background-color: var(--BottomTimelineColor);
   border-radius: 10px;
@@ -510,14 +516,14 @@ section .timeline .diderot .lineSTL {
 }
 section .timeline .epsi {
   top: 48.5%;
-  left: 75%;
+  left: 80%;
 }
 section .timeline .epsi .smallTL {
-  width: 250px;
+  width: 12vw;
   height: 10px;
   background-color: var(--BottomTimelineColor);
   border-radius: 10px;
-  transform: translate(25%, 58%);
+  transform: translate(0, 58%);
 }
 section .timeline .epsi .lineSTL {
   width: 2px;

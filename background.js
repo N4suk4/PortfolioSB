@@ -138,103 +138,101 @@ window.addEventListener('mousemove', handleMouseMove);
 createParticles();
 animate();
 
-const hexContainer = document.getElementsByClassName('hexagonContainer');
-const limitPosition = 364;
+// const hexContainer = document.querySelector('.hexagonContainer');
+// const elementAbove = document.querySelector('header'); // Remplace par ton sélecteur
 
-window.addEventListener('scroll', () => {
-  const scrollPosition = window.scrollY;
+// const updatePosition = () => {
+//   const rect = elementAbove.getBoundingClientRect();
+//   const offsetTop = rect.bottom + window.scrollY; // Position initiale du container
 
-  if (scrollPosition < limitPosition) {
-    hexContainer[0].style.top = limitPosition - scrollPosition + 50 +'px';
-  }
-  else {
-    hexContainer[0].style.top = 25;
-  }
-});
+//   if (window.scrollY >= offsetTop) {
+//     hexContainer.style.position = 'fixed';
+//     hexContainer.style.top = '0px'; // Bloqué en haut
+//   } else {
+//     hexContainer.style.position = 'absolute';
+//     hexContainer.style.top = offsetTop + 'px'; // Suit l'élément du dessus
+//   }
+// };
 
-const container = document.querySelector('.hexagonContainer');
+// window.addEventListener('resize', updatePosition);
+// window.addEventListener('scroll', updatePosition);
+// updatePosition(); // Pour initialiser la position dès le chargement
 
-function createHexagon(x, y) {
-  const perspective = document.createElement('div');
-  perspective.className = 'perspective';
+// const container = document.querySelector('.hexagonContainer');
+
+// function createHexagon(x, y) {
+//   const perspective = document.createElement('div');
+//   perspective.className = 'perspective';
   
-  const hexagon = document.createElement('div');
-  hexagon.className = 'hexagon';
+//   const hexagon = document.createElement('div');
+//   hexagon.className = 'hexagon';
 
-  perspective.style.position = 'absolute';
-  perspective.style.left = `${x}px`;
-  perspective.style.top = `${y}px`;
+//   perspective.style.position = 'absolute';
+//   perspective.style.left = `${x}px`;
+//   perspective.style.top = `${y}px`;
 
-  perspective.appendChild(hexagon);
-  container.appendChild(perspective);
-}
+//   perspective.appendChild(hexagon);
+//   container.appendChild(perspective);
+// }
 
-function generateHexagons() {
-  const hexWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonLargeur'));
-  const hexHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonHauteur'));
+// function generateHexagons() {
+//   const hexWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonLargeur'));
+//   const hexHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--HexagonHauteur'));
   
-  const hexWidthWithSpacing = hexWidth * Math.sqrt(3);
-  const hexHeightWithSpacing = hexHeight;
+//   const hexWidthWithSpacing = hexWidth * Math.sqrt(3);
+//   const hexHeightWithSpacing = hexHeight;
   
-  const containerWidth = container.clientWidth;
-  const containerHeight = container.clientHeight;
+//   const containerWidth = container.clientWidth;
+//   const containerHeight = container.clientHeight;
 
-  for (let y = 0; y < containerHeight; y += hexHeightWithSpacing) {
-    for (let x = 0; x < containerWidth; x += hexWidthWithSpacing) {
-      const offsetX = (y / hexHeightWithSpacing) % 2 === 0 ? 0 : hexWidthWithSpacing / 2;
-      createHexagon(x + offsetX, y);
-    }
-  }
-}
+//   for (let y = 0; y < containerHeight; y += hexHeightWithSpacing) {
+//     for (let x = 0; x < containerWidth; x += hexWidthWithSpacing) {
+//       const offsetX = (y / hexHeightWithSpacing) % 2 === 0 ? 0 : hexWidthWithSpacing / 2;
+//       createHexagon(x + offsetX, y);
+//     }
+//   }
+// }
 
-generateHexagons();
+// generateHexagons();
 
 
-const hexagons = document.querySelectorAll('.hexagon');
+// const hexagons = document.querySelectorAll('.hexagon');
 
-const influenceCurseur = 100; 
-const effectStrengthFactor = 5;
+// const influenceCurseur = 100; 
+// const effectStrengthFactor = 5;
 
-function getDistance(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-}
+// function getDistance(x1, y1, x2, y2) {
+//   return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+// }
 
-function applyEffect(e) {
-  const cursorX = e.clientX;
-  const cursorY = e.clientY;
+// function applyEffect(e) {
+//   const cursorX = e.clientX;
+//   const cursorY = e.clientY;
 
-  hexagons.forEach(hex => {
-    const hexRect = hex.getBoundingClientRect();
-    const hexCenterX = hexRect.left + hexRect.width / 2;
-    const hexCenterY = hexRect.top + hexRect.height / 2;
+//   hexagons.forEach(hex => {
+//     const hexRect = hex.getBoundingClientRect();
+//     const hexCenterX = hexRect.left + hexRect.width / 2;
+//     const hexCenterY = hexRect.top + hexRect.height / 2;
 
-    const distance = getDistance(cursorX, cursorY, hexCenterX, hexCenterY);
+//     const distance = getDistance(cursorX, cursorY, hexCenterX, hexCenterY);
 
-    const effectStrength = Math.max(0, (influenceCurseur - distance) / influenceCurseur) * effectStrengthFactor;
+//     const effectStrength = Math.max(0, (influenceCurseur - distance) / influenceCurseur) * effectStrengthFactor;
 
-    // Calculer les angles de rotation
-    const angleY = (cursorX - hexCenterX) / 4 * effectStrength;
-    const angleX = -(cursorY - hexCenterY) / 4 * effectStrength;
+//     // Calculer les angles de rotation
+//     const angleY = (cursorX - hexCenterX) / 4 * effectStrength;
+//     const angleX = -(cursorY - hexCenterY) / 4 * effectStrength;
 
-    // Appliquer la transformation
-    hex.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(-20px)`;
-  });
-}
+//     // Appliquer la transformation
+//     hex.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(-20px)`;
+//   });
+// }
 
-// Ajouter l'écouteur d'événements sur le conteneur
-document.querySelector('.hexagonContainer').addEventListener('mousemove', applyEffect);
+// // Ajouter l'écouteur d'événements sur le conteneur
+// document.querySelector('.hexagonContainer').addEventListener('mousemove', applyEffect);
 
-// Réinitialiser la transformation lorsque le curseur quitte le conteneur
-document.querySelector('.hexagonContainer').addEventListener('mouseleave', () => {
-  hexagons.forEach(hex => {
-    hex.style.transform = `rotateX(0) rotateY(0)`;
-  });
-});
-
-const burger = document.querySelector('.burger');
-const tabs = document.querySelector('.tabs')
-
-burger.addEventListener('click', () =>{
-  burger.classList.toggle('active');
-  tabs.classList.toggle('swipe');
-})
+// // Réinitialiser la transformation lorsque le curseur quitte le conteneur
+// document.querySelector('.hexagonContainer').addEventListener('mouseleave', () => {
+//   hexagons.forEach(hex => {
+//     hex.style.transform = `rotateX(0) rotateY(0)`;
+//   });
+// });
