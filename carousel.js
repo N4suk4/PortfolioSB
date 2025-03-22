@@ -6,7 +6,7 @@ const $next = $g(".next");
 const $list = $g(".carouselList");
 let auto;
 let pauser;
- 
+
 const getActiveIndex = () => {
   const $active = $g("[data-active]");
   return getSlideIndex($active);
@@ -50,7 +50,6 @@ const activateSlide = ($slide) => {
   const $slides = $q(".carouselItem");
   $slides.forEach((el) => el.removeAttribute("data-active"));
   $slide.setAttribute("data-active", true);
-  $slide.focus();
 };
 
 const autoSlide = () => {

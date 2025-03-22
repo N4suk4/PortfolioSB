@@ -333,7 +333,7 @@ section .presContent .competences ul .containerCard .card .contentCard {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 section .presContent .competences ul .containerCard .card .contentCard img {
-  height: 260px;
+  height: 150px;
   -o-object-fit: fill;
      object-fit: fill;
 }
