@@ -139,7 +139,7 @@ createParticles();
 animate();
 
 const hexContainer = document.querySelector('.hexagonContainer');
-const elementAbove = document.querySelector('header'); // Remplace par ton sélecteur
+const elementAbove = document.querySelector('header');
 
 const updatePosition = () => {
   const rect = elementAbove.getBoundingClientRect();
