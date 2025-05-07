@@ -1,0 +1,59 @@
+.veilleWrapper{
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  align-items: center;
+  background: var(--BackgroundRight);
+  padding:var(--GlobalContentPadding);
+  z-index: 1;
+
+  .veilleContent{
+    width: 40%;
+
+    h1{
+      margin-bottom: 10px;
+      color: var(--SubtitleTitle);
+      text-align: left;
+      font-size: var(--H1);
+      font-family: 'Roboto Condensed';
+    }
+
+    p,a{
+      font-size: var(--Text);
+      color: var(--TextColor);
+      text-align: left;
+    }
+
+    a{
+      pointer-events: all;
+    }
+
+    h2{
+      font-size: var(--H2);
+      color: var(--OptionColor);
+      margin-top: 50px;
+      text-align: left;
+      text-align: center;
+    }
+  }
+
+  img{
+    width: 40%;
+    border-radius: 20px;
+  }
+}
+
+.separationLineWrapper{
+  width: 100%;
+  height: 3px;
+  background: var(--BackgroundRight);
+  justify-content: center;
+
+  .separationLine{
+    margin: auto;
+    width: 60%;
+    height: 100%;
+    background: var(--OptionColor);
+    border-radius: 10px;
+  }
+}
