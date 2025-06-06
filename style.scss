@@ -31,6 +31,10 @@
   //Sizes
   --GlobalContentPadding: 3%;
 
+  //Timing
+  --delay: 1s;
+  --timing: 2s;
+
   //Carousel
   --canvas:220;
   --bg:hsl(var(--canvas), 15%, 22%);
@@ -211,7 +215,7 @@ header{
 section{
   position: relative;
   z-index: 10;
-  pointer-events: none;
+  // pointer-events: none;
 
   .topRight{
     background: var(--BackgroundRight);
@@ -295,6 +299,8 @@ section{
 
       .option{
         width: 40%;
+        padding: 10px;
+
 
         h3{
           font-size: var(--H3);
@@ -337,6 +343,64 @@ section{
             background-image: url('images/icones/developpement.png');
             background-size: cover;
             background-repeat: no-repeat;
+          }
+        }
+      }
+
+      .SLAM{
+        position: relative;
+        margin: 10px;
+        border-radius: 25px;
+        overflow: hidden;
+
+        h3,p{
+          padding-inline: 10px;
+        }
+
+        .bar {
+          position: absolute;
+          width: 5rem;
+          height: 0.5rem;
+          background: var(--TextColor);
+          animation-duration: var(--timing);
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          transition: all var(--timing) linear;
+          filter: blur(3px);
+
+          &.delay {
+            animation-delay: var(--delay);
+          }
+
+          &.top,
+          &.bottom {
+            animation-name: h-move;
+          }
+
+          &.right,
+          &.left {
+            transform: rotate(90deg);
+            animation-name: v-move;
+          }
+
+          &.top {
+            top: 4px;
+            left: -0.5rem;
+          }
+
+          &.bottom {
+            bottom: 5px;
+            left: -0.5rem;
+          }
+
+          &.right {
+            top: 1.8rem;
+            right: -35px;
+          }
+
+          &.left {
+            top: 3rem;
+            left: -35px;
           }
         }
       }
@@ -1031,6 +1095,13 @@ section{
     }
   }
 
+  .synthese{
+    margin: auto;
+    font-size: var(--H1);
+    color: var(--OptionColor);
+    pointer-events: all;
+  }
+
   .veilleContainer{
     display: flex;
     padding: var(--GlobalContentPadding);
@@ -1154,6 +1225,39 @@ section{
   }
 }
 
+@keyframes h-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes v-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
 
 @keyframes boxMagic1 {
   from{

@@ -21,6 +21,8 @@
   --Text: 1.3em;
   --SmallText: 0.9em;
   --GlobalContentPadding: 3%;
+  --delay: 1s;
+  --timing: 2s;
   --canvas:220;
   --bg:hsl(var(--canvas), 15%, 22%);
   --fg:hsl(var(--canvas), 39%, 95%);
@@ -177,7 +179,6 @@ header .container .subtitle {
 section {
   position: relative;
   z-index: 10;
-  pointer-events: none;
 }
 section .topRight {
   background: var(--BackgroundRight);
@@ -256,6 +257,7 @@ section .presContent .btsOptions {
 }
 section .presContent .btsOptions .option {
   width: 40%;
+  padding: 10px;
 }
 section .presContent .btsOptions .option h3 {
   font-size: var(--H3);
@@ -295,6 +297,52 @@ section .presContent .btsOptions .option ul .optionSlam::before {
   background-image: url("images/icones/developpement.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+section .presContent .btsOptions .SLAM {
+  position: relative;
+  margin: 10px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+section .presContent .btsOptions .SLAM h3, section .presContent .btsOptions .SLAM p {
+  padding-inline: 10px;
+}
+section .presContent .btsOptions .SLAM .bar {
+  position: absolute;
+  width: 5rem;
+  height: 0.5rem;
+  background: var(--TextColor);
+  animation-duration: var(--timing);
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  transition: all var(--timing) linear;
+  filter: blur(3px);
+}
+section .presContent .btsOptions .SLAM .bar.delay {
+  animation-delay: var(--delay);
+}
+section .presContent .btsOptions .SLAM .bar.top, section .presContent .btsOptions .SLAM .bar.bottom {
+  animation-name: h-move;
+}
+section .presContent .btsOptions .SLAM .bar.right, section .presContent .btsOptions .SLAM .bar.left {
+  transform: rotate(90deg);
+  animation-name: v-move;
+}
+section .presContent .btsOptions .SLAM .bar.top {
+  top: 4px;
+  left: -0.5rem;
+}
+section .presContent .btsOptions .SLAM .bar.bottom {
+  bottom: 5px;
+  left: -0.5rem;
+}
+section .presContent .btsOptions .SLAM .bar.right {
+  top: 1.8rem;
+  right: -35px;
+}
+section .presContent .btsOptions .SLAM .bar.left {
+  top: 3rem;
+  left: -35px;
 }
 section .presContent .apropos {
   width: 90%;
@@ -894,6 +942,12 @@ section .carouselBack button {
   gap: 0.5em;
   padding: 0.5em 1.5em;
 }
+section .synthese {
+  margin: auto;
+  font-size: var(--H1);
+  color: var(--OptionColor);
+  pointer-events: all;
+}
 section .veilleContainer {
   display: flex;
   padding: var(--GlobalContentPadding);
@@ -999,6 +1053,38 @@ section .entrepriseContainer .stage p {
   text-align: left;
 }
 
+@keyframes h-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes v-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
 @keyframes boxMagic1 {
   from {
     box-shadow: 0 0 0 #FEAC5E, 0 0 0 #C779D0, 0 0 0 #4BC0C8, 0 0 0 #42DB75;
