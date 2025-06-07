@@ -215,7 +215,7 @@ header{
 section{
   position: relative;
   z-index: 10;
-  // pointer-events: none;
+  pointer-events: none;
 
   .topRight{
     background: var(--BackgroundRight);
@@ -372,15 +372,25 @@ section{
             animation-delay: var(--delay);
           }
 
-          &.top,
-          &.bottom {
-            animation-name: h-move;
+          &.top{
+            animation-name: ht-move;
+            animation-timing-function: ease;
           }
 
-          &.right,
+          &.bottom {
+            animation-name: hb-move;
+            animation-timing-function: ease-in-out;
+          }
+
+          &.right {
+            transform: rotate(-90deg);
+            animation-name: vr-move;
+            animation-timing-function: ease-in-out;
+          }
+
           &.left {
             transform: rotate(90deg);
-            animation-name: v-move;
+            animation-name: vl-move;
           }
 
           &.top {
@@ -1225,7 +1235,7 @@ section{
   }
 }
 
-@keyframes h-move {
+@keyframes ht-move {
   0% {
     left: -5rem;
     opacity: 0;
@@ -1242,7 +1252,24 @@ section{
   }
 }
 
-@keyframes v-move {
+@keyframes hb-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes vr-move {
   0% {
     top: -5rem;
     opacity: 0;
@@ -1254,7 +1281,24 @@ section{
     opacity: 1;
   }
   100% {
-    top: 100%;
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes vl-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
     opacity: 0;
   }
 }
