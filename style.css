@@ -21,6 +21,8 @@
   --Text: 1.3em;
   --SmallText: 0.9em;
   --GlobalContentPadding: 3%;
+  --delay: 1s;
+  --timing: 2s;
   --canvas:220;
   --bg:hsl(var(--canvas), 15%, 22%);
   --fg:hsl(var(--canvas), 39%, 95%);
@@ -256,6 +258,7 @@ section .presContent .btsOptions {
 }
 section .presContent .btsOptions .option {
   width: 40%;
+  padding: 10px;
 }
 section .presContent .btsOptions .option h3 {
   font-size: var(--H3);
@@ -295,6 +298,62 @@ section .presContent .btsOptions .option ul .optionSlam::before {
   background-image: url("images/icones/developpement.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+section .presContent .btsOptions .SLAM {
+  position: relative;
+  margin: 10px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+section .presContent .btsOptions .SLAM h3, section .presContent .btsOptions .SLAM p {
+  padding-inline: 10px;
+}
+section .presContent .btsOptions .SLAM .bar {
+  position: absolute;
+  width: 5rem;
+  height: 0.5rem;
+  background: var(--TextColor);
+  animation-duration: var(--timing);
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  transition: all var(--timing) linear;
+  filter: blur(3px);
+}
+section .presContent .btsOptions .SLAM .bar.delay {
+  animation-delay: var(--delay);
+}
+section .presContent .btsOptions .SLAM .bar.top {
+  animation-name: ht-move;
+  animation-timing-function: ease;
+}
+section .presContent .btsOptions .SLAM .bar.bottom {
+  animation-name: hb-move;
+  animation-timing-function: ease-in-out;
+}
+section .presContent .btsOptions .SLAM .bar.right {
+  transform: rotate(-90deg);
+  animation-name: vr-move;
+  animation-timing-function: ease-in-out;
+}
+section .presContent .btsOptions .SLAM .bar.left {
+  transform: rotate(90deg);
+  animation-name: vl-move;
+}
+section .presContent .btsOptions .SLAM .bar.top {
+  top: 4px;
+  left: -0.5rem;
+}
+section .presContent .btsOptions .SLAM .bar.bottom {
+  bottom: 5px;
+  left: -0.5rem;
+}
+section .presContent .btsOptions .SLAM .bar.right {
+  top: 1.8rem;
+  right: -35px;
+}
+section .presContent .btsOptions .SLAM .bar.left {
+  top: 3rem;
+  left: -35px;
 }
 section .presContent .apropos {
   width: 90%;
@@ -616,7 +675,31 @@ section .epreuveE6 p {
 section .epreuveE6 h2 {
   font-size: var(--H2);
   color: var(--OptionColor);
-  margin: 0;
+  margin: 50px;
+}
+section .epreuveE6 .epreuveE6content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section .epreuveE6 .epreuveE6content img {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section .epreuveE6 .epreuveE6content p {
+  width: 50%;
+  font-size: var(--Text);
+  color: var(--TextColor);
+  text-align: left;
+}
+section .epreuveE6 a {
+  margin: auto;
+  font-size: var(--H2);
+  color: var(--TextColor);
+  pointer-events: all;
 }
 section .carouselBack {
   background: var(--BackgroundRight);
@@ -894,6 +977,12 @@ section .carouselBack button {
   gap: 0.5em;
   padding: 0.5em 1.5em;
 }
+section .synthese {
+  margin: auto;
+  font-size: var(--H1);
+  color: var(--OptionColor);
+  pointer-events: all;
+}
 section .veilleContainer {
   display: flex;
   padding: var(--GlobalContentPadding);
@@ -998,7 +1087,79 @@ section .entrepriseContainer .stage p {
   color: var(--TextColor);
   text-align: left;
 }
+section .entrepriseContainer p {
+  width: 50%;
+  padding-bottom: 50px;
+  margin: auto;
+  font-size: var(--Text);
+  color: var(--TextColor);
+  text-align: center;
+}
 
+@keyframes ht-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes hb-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+@keyframes vr-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+@keyframes vl-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
 @keyframes boxMagic1 {
   from {
     box-shadow: 0 0 0 #FEAC5E, 0 0 0 #C779D0, 0 0 0 #4BC0C8, 0 0 0 #42DB75;

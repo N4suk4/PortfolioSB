@@ -31,6 +31,10 @@
   //Sizes
   --GlobalContentPadding: 3%;
 
+  //Timing
+  --delay: 1s;
+  --timing: 2s;
+
   //Carousel
   --canvas:220;
   --bg:hsl(var(--canvas), 15%, 22%);
@@ -295,6 +299,8 @@ section{
 
       .option{
         width: 40%;
+        padding: 10px;
+
 
         h3{
           font-size: var(--H3);
@@ -337,6 +343,74 @@ section{
             background-image: url('images/icones/developpement.png');
             background-size: cover;
             background-repeat: no-repeat;
+          }
+        }
+      }
+
+      .SLAM{
+        position: relative;
+        margin: 10px;
+        border-radius: 25px;
+        overflow: hidden;
+
+        h3,p{
+          padding-inline: 10px;
+        }
+
+        .bar {
+          position: absolute;
+          width: 5rem;
+          height: 0.5rem;
+          background: var(--TextColor);
+          animation-duration: var(--timing);
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          transition: all var(--timing) linear;
+          filter: blur(3px);
+
+          &.delay {
+            animation-delay: var(--delay);
+          }
+
+          &.top{
+            animation-name: ht-move;
+            animation-timing-function: ease;
+          }
+
+          &.bottom {
+            animation-name: hb-move;
+            animation-timing-function: ease-in-out;
+          }
+
+          &.right {
+            transform: rotate(-90deg);
+            animation-name: vr-move;
+            animation-timing-function: ease-in-out;
+          }
+
+          &.left {
+            transform: rotate(90deg);
+            animation-name: vl-move;
+          }
+
+          &.top {
+            top: 4px;
+            left: -0.5rem;
+          }
+
+          &.bottom {
+            bottom: 5px;
+            left: -0.5rem;
+          }
+
+          &.right {
+            top: 1.8rem;
+            right: -35px;
+          }
+
+          &.left {
+            top: 3rem;
+            left: -35px;
           }
         }
       }
@@ -704,7 +778,34 @@ section{
     h2{
       font-size: var(--H2);
       color: var(--OptionColor);
-      margin: 0;
+      margin: 50px;
+    }
+
+    .epreuveE6content{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img{
+        width: 40%;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      p{
+        width: 50%;
+        font-size: var(--Text);
+        color: var(--TextColor);
+        text-align: left;
+      }
+    }
+
+    a{
+      margin: auto;
+      font-size: var(--H2);
+      color: var(--TextColor);
+      pointer-events: all;
     }
   }
 
@@ -1031,6 +1132,13 @@ section{
     }
   }
 
+  .synthese{
+    margin: auto;
+    font-size: var(--H1);
+    color: var(--OptionColor);
+    pointer-events: all;
+  }
+
   .veilleContainer{
     display: flex;
     padding: var(--GlobalContentPadding);
@@ -1151,9 +1259,84 @@ section{
         text-align: left;
       } 
     }
+    p{
+      width: 50%;
+      padding-bottom: 50px;
+      margin: auto;
+      font-size: var(--Text);
+      color: var(--TextColor);
+      text-align: center;
+    }
   }
 }
 
+@keyframes ht-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes hb-move {
+  0% {
+    left: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes vr-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes vl-move {
+  0% {
+    top: -5rem;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
 
 @keyframes boxMagic1 {
   from{
