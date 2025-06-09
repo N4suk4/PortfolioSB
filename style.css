@@ -675,7 +675,31 @@ section .epreuveE6 p {
 section .epreuveE6 h2 {
   font-size: var(--H2);
   color: var(--OptionColor);
-  margin: 0;
+  margin: 50px;
+}
+section .epreuveE6 .epreuveE6content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section .epreuveE6 .epreuveE6content img {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+section .epreuveE6 .epreuveE6content p {
+  width: 50%;
+  font-size: var(--Text);
+  color: var(--TextColor);
+  text-align: left;
+}
+section .epreuveE6 a {
+  margin: auto;
+  font-size: var(--H2);
+  color: var(--TextColor);
+  pointer-events: all;
 }
 section .carouselBack {
   background: var(--BackgroundRight);
@@ -1062,6 +1086,14 @@ section .entrepriseContainer .stage p {
   font-size: var(--Text);
   color: var(--TextColor);
   text-align: left;
+}
+section .entrepriseContainer p {
+  width: 50%;
+  padding-bottom: 50px;
+  margin: auto;
+  font-size: var(--Text);
+  color: var(--TextColor);
+  text-align: center;
 }
 
 @keyframes ht-move {
