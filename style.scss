@@ -1141,6 +1141,7 @@ section{
 
   .veilleContainer{
     display: flex;
+    flex-wrap: wrap;
     padding: var(--GlobalContentPadding);
     background: var(--BackgroundRight);
     text-decoration: none;
